@@ -17,6 +17,15 @@
         <th>
             @Html.DisplayNameFor(model => model.AlterEgo)
         </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PrimaryAbility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondaryAbility)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CatchPhrase)
+        </th>
         <th></th>
     </tr>
 
@@ -29,9 +38,18 @@
             @Html.DisplayFor(modelItem => item.AlterEgo)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.HeroId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.HeroId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.HeroId })
+            @Html.DisplayFor(modelItem => item.PrimaryAbility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondaryAbility)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CatchPhrase)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.HeroId }) |
+            @Html.ActionLink("Details", "Details", new { id = item.HeroId }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.HeroId })
         </td>
     </tr>
 }
