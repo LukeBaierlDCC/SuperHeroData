@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
@@ -26,6 +27,7 @@ namespace Superheroes.Models
             
         }
 
+        public static IEnumerable<object> Heroes { get; internal set; }
         public DbSet<Superhero> Superheroes { get; set; }
 
         
