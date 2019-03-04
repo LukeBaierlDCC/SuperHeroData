@@ -10,9 +10,12 @@ namespace Superheroes.Models
     {
         [Key]
         public int HeroId { get; set; }
+        public string HeroName { get; set; }
         public string AlterEgo { get; set; }
         public string PrimaryAbility { get; set; }
         public string SecondaryAbility { get; set; }
         public string CatchPhrase { get; set; }
+        //public string Badge { get; set; }
+
     }
 }

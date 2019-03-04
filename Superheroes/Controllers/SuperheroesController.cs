@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Superheroes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,6 +9,7 @@ namespace Superheroes.Controllers
 {
     public class SuperheroesController : Controller
     {
+        //ApplicationDbContext dbContext = new ApplicationDbContext();
         // GET: Superheroes
         public ActionResult Index()
         {
