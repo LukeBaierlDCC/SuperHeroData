@@ -12,13 +12,17 @@ namespace Superheroes.Controllers
 {
     public class SuperheroesController : Controller
     {
-        //public object db { get; private set; }
-
+        ApplicationDbContext db;
+        public SuperheroesController()
+        {
+            db = new ApplicationDbContext();
+        }
+        
         // GET: Superheroes
         public ActionResult Index()
         {
-            Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
-            List<Models.Superhero> ListOfSuperheroes = dbContext.Superheroes.ToList();
+            Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+            List<Models.Superhero> ListOfSuperheroes = db.Superheroes.ToList();
             return View(ListOfSuperheroes);
         }
 
@@ -41,9 +45,9 @@ namespace Superheroes.Controllers
             try
             {
                 // TODO: Add insert logic here
-                Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
-                dbContext.Superheroes.Add(superhero);
-                dbContext.SaveChanges();
+                Models.ApplicationDbContext db = new Models.ApplicationDbContext();
+                db.Superheroes.Add(superhero);
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
@@ -71,13 +75,14 @@ namespace Superheroes.Controllers
         // POST: Superheroes/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "HeroId,HeroName,AlterEgo,PrimaryAbility,SecondaryAbility,CatchPhrase")] Superhero superheroDetail)
+        public ActionResult Edit(int id, Superhero superhero)
         {
             try
             {
                 // TODO: Add update logic here
                 //db.Entry(superheroDetail).State = EntityState.Modified;
                 //db.SaveChanges();
+                //var Superhero
                 return RedirectToAction("Index");
             }
             catch
@@ -89,19 +94,18 @@ namespace Superheroes.Controllers
         // GET: Superheroes/Delete/5
         public ActionResult Delete(int id)
         {
-            return View();
+            return View(db.Superheroes.Find(id));
         }
 
         // POST: Superheroes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, Superhero superheroToBeDeleted)
+        public ActionResult Delete(int id, Superhero superhero)
         {
             try
             {
                 // TODO: Add delete logic here
-                Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
-                dbContext.Superheroes.Remove(superheroToBeDeleted);
-                dbContext.SaveChanges();
+                db.Superheroes.Remove(db.Superheroes.Find(id));
+                db.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
