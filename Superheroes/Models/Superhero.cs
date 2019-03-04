@@ -6,7 +6,7 @@ using System.Web;
 
 namespace Superheroes.Models
 {
-    public class SuperheroList
+    public class Superhero
     {
         [Key]
         public int HeroId { get; set; }
@@ -15,7 +15,7 @@ namespace Superheroes.Models
         public string PrimaryAbility { get; set; }
         public string SecondaryAbility { get; set; }
         public string CatchPhrase { get; set; }
-        //public string Badge { get; set; }
+        
 
     }
 }

@@ -26,7 +26,7 @@ namespace Superheroes.Models
             
         }
 
-        public DbSet<SuperheroList> Superheroes { get; set; }
+        public DbSet<Superhero> Superheroes { get; set; }
 
         
         public static ApplicationDbContext Create()

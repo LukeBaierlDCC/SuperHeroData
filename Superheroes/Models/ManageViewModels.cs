@@ -1,7 +1,15 @@
-﻿using System.Collections.Generic;
+﻿//using System;
+//using System.Linq;
+//using System.Threading.Tasks;
+//using System.Web;
+using System.Web.Mvc;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using Microsoft.AspNet.Identity;
+//using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using CompareAttribute = System.Web.Mvc.CompareAttribute;
+//using Superheroes;
 
 namespace Superheroes.Models
 {

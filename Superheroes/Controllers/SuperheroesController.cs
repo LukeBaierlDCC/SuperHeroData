@@ -1,4 +1,5 @@
 ﻿using Superheroes;
+using Superheroes.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,11 +10,13 @@ namespace Superheroes.Controllers
 {
     public class SuperheroesController : Controller
     {
-        //ApplicationDbContext dbContext = new ApplicationDbContext();
+        
         // GET: Superheroes
         public ActionResult Index()
         {
-            return View();
+            Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
+            List<Models.Superhero> ListOfSuperheroes = dbContext.Superheroes.ToList();
+            return View(ListOfSuperheroes);
         }
 
         // GET: Superheroes/Details/5
@@ -30,12 +33,14 @@ namespace Superheroes.Controllers
 
         // POST: Superheroes/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult Create(Superhero superhero)
         {
             try
             {
                 // TODO: Add insert logic here
-
+                Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
+                dbContext.Superheroes.Add(superhero);
+                dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
