@@ -79,12 +79,14 @@ namespace Superheroes.Controllers
 
         // POST: Superheroes/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public ActionResult Delete(Superhero superhero)
         {
             try
             {
                 // TODO: Add delete logic here
-
+                Models.ApplicationDbContext dbContext = new Models.ApplicationDbContext();
+                dbContext.Superheroes.Add(superhero);
+                dbContext.SaveChanges();
                 return RedirectToAction("Index");
             }
             catch
