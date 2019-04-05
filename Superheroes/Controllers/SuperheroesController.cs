@@ -57,19 +57,16 @@ namespace Superheroes.Controllers
         }
 
         // GET: Superheroes/Edit/5
+        [HttpGet]
         public ActionResult Edit(int id)
         {
-            //if (id == null)
-            //{
-            //    return new ();
-            //}
-            //object db = null;
-            //Superhero superheroDetail = db.SuperheroDetails.Find(id);
-            //if (id == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            return View();
+            var superheroes = db.Superheroes.SingleOrDefault(s => s.HeroId == id);
+            if (superheroes == null )
+            {
+                return HttpNotFound();
+            }
+            return View(superheroes);
+            //return View(db.Superheroes.Where(d => d.HeroId == id).SingleOrDefault());
         }
 
         // POST: Superheroes/Edit/5
@@ -80,14 +77,21 @@ namespace Superheroes.Controllers
             try
             {
                 // TODO: Add update logic here
-                //db.Entry(superheroDetail).State = EntityState.Modified;
-                //db.SaveChanges();
-                //var Superhero
-                return RedirectToAction("Index");
+                Superhero thisSuperhero = db.Superheroes.Find(id);
+                
+                thisSuperhero.HeroName = superhero.HeroName;
+                thisSuperhero.AlterEgo = superhero.AlterEgo;
+                thisSuperhero.PrimaryAbility = superhero.PrimaryAbility;
+                thisSuperhero.SecondaryAbility = superhero.SecondaryAbility;
+                thisSuperhero.CatchPhrase = superhero.CatchPhrase;
+
+                db.SaveChanges();
+
+                return RedirectToAction("Index", "Superheroes");
             }
             catch
             {
-                return View();
+                return View(superhero);
             }
         }
 
@@ -104,9 +108,10 @@ namespace Superheroes.Controllers
             try
             {
                 // TODO: Add delete logic here
+                var superheroes = db.Superheroes.SingleOrDefault(s => s.HeroId == id);
                 db.Superheroes.Remove(db.Superheroes.Find(id));
                 db.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", superhero);
             }
             catch
             {
