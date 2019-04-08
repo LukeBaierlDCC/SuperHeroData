@@ -27,9 +27,18 @@ namespace Superheroes.Controllers
         }
 
         // GET: Superheroes/Details/5
-        public ActionResult Details(int id, Superhero superhero)
+        public ActionResult Details(int? id)
         {
-            return View();
+            if(id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Superhero superhero = db.Superheroes.Find(id);
+            if (superhero == null)
+            {
+                return HttpNotFound();
+            }
+            return View(superhero);
         }
 
         // GET: Superheroes/Create
