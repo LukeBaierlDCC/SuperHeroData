@@ -105,18 +105,20 @@ namespace Superheroes.Controllers
         [HttpPost]
         public ActionResult Delete(int id, Superhero superhero)
         {
-            try
-            {
+            //try
+            //{
                 // TODO: Add delete logic here
-                var superheroes = db.Superheroes.SingleOrDefault(s => s.HeroId == id);
-                db.Superheroes.Remove(db.Superheroes.Find(id));
-                db.SaveChanges();
-                return RedirectToAction("Index", superhero);
-            }
-            catch
-            {
-                return View();
-            }
+            var superheroes = db.Superheroes.SingleOrDefault(s => s.HeroId == id);
+            db.Superheroes.Remove(db.Superheroes.Find(id));
+            db.SaveChanges();
+
+            return View("Index", superheroes);
+                //return RedirectToAction("Index", superhero);
+            //}
+            //catch
+            //{
+            //    return View();
+            //}
         }
     }
 }
